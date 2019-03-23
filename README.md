@@ -60,8 +60,8 @@ The application consists of multiple containerized nodes which are managed with 
     + Message broker for result push notifications
 
 - Celery workers (python:3.6-alpine)
-    + Task queues for real-time service requests
-    + Task queues for scheduled requests
+    + Task queues for real-time service requests (Multi-threading)
+    + Task queues for scheduled requests (Multi-processing)
     + Docker client (Access dockerd through mounted /var/run/docker.sock)
 
 - Redis (redis:alpine)
