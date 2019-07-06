@@ -26,7 +26,7 @@ The level of information here is limited based on permissions granted by my mana
 <br>
 
 ## 1. Introduction  
-Containerized Service Delivery Platform (Microservices) is a scalable multi-container Docker application which delivers users a collection of containerized QA applications as a "per-user" on-demand service.
+Containerized Service Delivery Platform (Microservices) is a scalable multi-container Docker application which delivers remote users a collection of containerized QA applications as a "per-user" on-demand service.
 
 Once a new containerized service is built and published onto it, users can control/manage their own dedicated containers by quickly starting the service via the Restful API interface, and can consume those service features by directly accessing the container's routable IPv4/v6 addresses.  
 
@@ -80,7 +80,7 @@ This design enables users to spin up N number of replicated containers at the sa
 ![Per-user Service Delivery](img/Slide2.jpg)  
 
 
-**Launched Services (16 services as of today)**
+**Launched Services (17 services as of today)**
 
 - Browser version on-demand (Standalone Selenium Server)
     + Chrome (selenium/standalone-chrome-debug)
@@ -106,6 +106,14 @@ This design enables users to spin up N number of replicated containers at the sa
     + Software Simulator for a next-generation product (ubuntu:16.04)
     + Restful API subscriber (Flask app/alpine:3.7)
     + Support site simulator (Flask app/alpine:3.7)
+
+- Dynamimc Service Creation
+    + Any applications (any docker images available on official docker hub)
+
+    > Dynamic Service Creation is a special type of service which turns ANY public docker applications into a service manageble on the platform. A user can specify any docker images availeble on the official docker hub along with raw arguments passed to "docker run" command.  
+    
+
+
 
 
 
@@ -166,26 +174,24 @@ Available service features can be categorized with two groups - common features 
 
 
 #### 1) Common Features  
-All services at least provide the following common container/service level management features.
-
-- show
-    + Show information about container(s)/service(s) a user owns/all users own
-- start
-    + Start service with N (number of replicates) container(s)
-- stop
-    + Stop a container, or all containers for a service/all services
-- restart
-    + Restart a container, or all containers for a service
-- delete
-    + Delete a container, or all containers for a service/all services
-- monitor
-    + Monitor/clear service output of a container
-- files
-    + upload/download files to/from a container
-- exec
-    + Execute Linux commands inside a container
+All services, including Dynamic Service Creation, at least provide the following common container/service level management features.  
+CLI syntax is something like `service <service_name> <mgmt_command> [<container_id_or_name> | all]`
 
 
+| Mgmt command  | Equivalent Docker command                         | Description                                                       |
+|-------------- |-----------------------------------------------    |----------------------------------------------------------------   |
+| show          | docker ps / docker info                           | Show information about services                                   |
+| start         | docker run /<br> docker create + docker start     | Start service with N number of replicated containers              |
+| stop          | docker stop                                       | Stop a service                                                    |
+| restart       | docker restart                                    | Restart a service                                                 |
+| delete        | docker remove                                     | Delete a service or all services                                  |
+| monitor       | -                                                 | Monitor service output                                            |
+| files         | docker cp                                         | Upload files to a container<br>download files from a container    |
+| exec          | docker exec                                       | Run a command inside a container                                  |
+| logs          | docker logs                                       | Get container's log                                               |
+| attach        | docker attach                                     | Attach to a container's socket                                    |
+
+> Note: A service = N containers started for the service
 
 #### 2) Service-specific Features
 On top of above common features, each service provides variety of different service-specific features. I can not list everything here but these are the ones that make each service unique.    
