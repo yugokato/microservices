@@ -80,7 +80,7 @@ This design enables users to spin up N number of replicated containers at the sa
 ![Per-user Service Delivery](img/Slide2.jpg)  
 
 
-**Launched Services (17 services as of today)**
+**Launched Services (18 services as of today)**
 
 - Browser version on-demand (Standalone Selenium Server)
     + Chrome (selenium/standalone-chrome-debug)
@@ -106,6 +106,10 @@ This design enables users to spin up N number of replicated containers at the sa
     + Software Simulator for a next-generation product (ubuntu:16.04)
     + Restful API subscriber (Flask app/alpine:3.7)
     + Support site simulator (Flask app/alpine:3.7)
+
+- Container Attacher
+    + A socket relay server that attaches a client to a remote container's socket (Relays between TCP socket and remote docker.sock)  
+      Client <-- TCP:10000 --> Container Attacher (Socket relay server) <-- docker.sock --> Traget Container
 
 - Dynamimc Service Creation
     + Any applications (any docker images available on official docker hub)
@@ -184,14 +188,16 @@ CLI syntax is something like `service <service_name> <mgmt_command> [<container_
 | start         | docker run /<br> docker create + docker start     | Start service with N number of replicated containers              |
 | stop          | docker stop                                       | Stop a service                                                    |
 | restart       | docker restart                                    | Restart a service                                                 |
-| delete        | docker remove                                     | Delete a service or all services                                  |
+| delete        | docker rm                                         | Delete a service or all services                                  |
 | monitor       | -                                                 | Monitor service output                                            |
-| files         | docker cp                                         | Upload files to a container<br>download files from a container    |
+| files\*       | docker cp                                         | Upload files to a container<br>download files from a container    |
 | exec          | docker exec                                       | Run a command inside a container                                  |
 | logs          | docker logs                                       | Get container's log                                               |
-| attach        | docker attach                                     | Attach to a container's socket                                    |
+| attach\*\*    | docker attach                                     | Attach to a remote container's socket via socket relay server     |
 
-> Note: A service = N containers started for the service
+> Note: A service = N containers started for the service  
+> \*: Remote file path completion is supported  
+> \*\*: Bash tab completion is supported
 
 #### 2) Service-specific Features
 On top of above common features, each service provides variety of different service-specific features. I can not list everything here but these are the ones that make each service unique.    
