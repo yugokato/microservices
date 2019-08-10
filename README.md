@@ -28,6 +28,8 @@ The level of information here is limited based on permissions granted by my mana
 ## 1. Introduction  
 Containerized Service Delivery Platform (Microservices) is a scalable multi-container Docker application which delivers remote users a collection of containerized QA applications as a "per-user" on-demand service.
 
+![Introduction](img/Slide1.jpg)
+
 Once a new containerized service is built and published onto it, users can control/manage their own dedicated containers by quickly starting the service via the Restful API interface, and can consume those service features by directly accessing the container's routable IPv4/v6 addresses.  
 
 Each containerized service is designed to achieve a specific goal during QA testing. Therefore services are highly disposable and are expected to serve for short period of time - Containers can be quickly spun up, and can be deleted once the job is done.
@@ -42,7 +44,7 @@ Although Docker is one of the core technologies used for the application, users 
 The application consists of multiple containerized nodes which are managed with ``docker-compose``. Some components can be easily scaled up with ``scale`` option.  eg. ``docker-compose up --scale api_gateway=2 celery_worker=3``
 
 **Application Architecture**
-![Design Overview](img/Slide1.jpg)
+![Design Overview](img/Slide2.jpg)
 
 
 **Building Blocks**
@@ -77,7 +79,7 @@ This design enables users to spin up N number of replicated containers at the sa
 
 
 **Per-user Service Delivery Model**
-![Per-user Service Delivery](img/Slide2.jpg)  
+![Per-user Service Delivery](img/Slide3.jpg)  
 
 
 **Launched Services (18 services as of today)**
@@ -220,7 +222,7 @@ The basic idea is the following:
 
 
 **Request Flows (eg. Start Service)**
-![Request Flows](img/Slide3.jpg)
+![Request Flows](img/Slide4.jpg)
 
 
 #### 2) Celery Workflows
