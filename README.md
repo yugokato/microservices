@@ -82,7 +82,7 @@ This design enables users to spin up N number of replicated containers at the sa
 ![Per-user Service Delivery](img/Slide3.jpg)  
 
 
-**Launched Services (18 services as of today)**
+**Launched Services (19 services as of today)**
 
 - Browser version on-demand (Standalone Selenium Server)
     + Chrome (selenium/standalone-chrome-debug)
@@ -105,9 +105,10 @@ This design enables users to spin up N number of replicated containers at the sa
     + Log viewer (glogg 1.1.4/ubuntu:16.04)
 
 - Company's in-house applications
-    + Software Simulator for a next-generation product (ubuntu:16.04)
-    + Restful API subscriber (Flask app/alpine:3.7)
-    + Support site simulator (Flask app/alpine:3.7)
+    + Software simulator for a next-generation product (ubuntu:16.04)
+    + Next-generation multi-switch management application (Centos:7)
+    + Restful API subscriber (Custom Flask app/alpine:3.7)
+    + Support site simulator (Custom Flask app/alpine:3.7)
 
 - Container Attacher
     + A socket relay server that attaches a client to a remote container's socket (Relays between TCP socket and remote docker.sock)  
