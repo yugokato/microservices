@@ -75,7 +75,7 @@ The application consists of multiple containerized nodes which are managed with 
 #### 2) Containerized Services (Services)
 The application delivers containerized per-user services on-demand. Each service consists of one or more containers which other users can't touch. Since those containers are connected to the external IPv4/v6 dual-stack Macvlan network, each container has routable IPv4/v6 addresses, and exposed port numbers can be overlapped among other containers for the service, or other users' containers.  
 This design enables users to spin up N number of replicated containers at the same time with the same port numbers and different IP addresses.  
-(For example, it is highly useful when you need to test a feature where DUT sends messages to multiple external servers using a standard network protocol, such as SNMP Trap, Syslog etc, where you can't change which port number they listen on.)
+(For example, it is highly useful when you need to test a feature where AUT/DUT sends messages to multiple external servers using a standard network protocol, such as SNMP Trap, Syslog etc, where you can't change which port number they listen on.)
 
 
 **Per-user Service Delivery Model**
