@@ -135,14 +135,14 @@ All available commands are automatically converted to corresponding Restful APIs
 
 
 ##### (2) Python module
-To automate processes, you can directly import the python module and use it in python scripts.
+For test automation, you can directly import the python module and use it in python scripts.
 
 **Examples**  
 ```python
 >>> from pprint import pprint
 >>> from application import microservices
 >>> 
->>> result = microservices.example1.start_service(num=2)
+>>> result = microservices.example1.start(num=2)
 >>> pprint(result['containers'])
 [{'created': '2019-01-01T12:00:00.052287Z',
   'id': 'bdbe723df4',
@@ -161,7 +161,7 @@ To automate processes, you can directly import the python module and use it in p
   'service_port': 5000,
   'status': 'running'}]
 >>> 
->>> result = microservices.all.delete_service()
+>>> result = microservices.all.delete()
 >>> print(result)
 {'result': 'success'}
 
@@ -264,7 +264,7 @@ from application.celery import tasks
 
 class ServiceExample1(BaseService):
     def __init__(self, service_name):
-        super(ServiceExample1, self).__init__(service_name)
+        super().__init__(service_name)
 
     def start_service(self, client_ip, num_containers=1, file=None):
         """Start Example1 service in background
